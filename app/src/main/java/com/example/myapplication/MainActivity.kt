@@ -8,17 +8,13 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var studentList: RecyclerView
+    private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: StudentAdapter
     private val students = mutableListOf<Student>()
 
@@ -43,21 +39,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = getString(R.string.students_list_title)
 
-        studentList = findViewById(R.id.student_list)
-        studentList.layoutManager = LinearLayoutManager(this)
+        binding.studentList.layoutManager = LinearLayoutManager(this)
 
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        studentList.addItemDecoration(itemDecoration)
+        binding.studentList.addItemDecoration(itemDecoration)
 
         students.addAll(listOf(
             Student("Alice", "12345", android.R.drawable.sym_def_app_icon, false, "111-111", "Address 1"),
@@ -87,11 +78,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )
-        studentList.adapter = adapter
+        binding.studentList.adapter = adapter
 
-        val fab = findViewById<FloatingActionButton>(R.id.add_student_fab)
-        fab.setOnClickListener {
-            Toast.makeText(this, "Add student clicked", Toast.LENGTH_SHORT).show()
+        binding.addStudentFab.setOnClickListener {
+            Toast.makeText(this, getString(R.string.add_student_clicked), Toast.LENGTH_SHORT).show()
         }
     }
 }

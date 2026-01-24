@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Students List" />
+            app:title="@string/students_list_title" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

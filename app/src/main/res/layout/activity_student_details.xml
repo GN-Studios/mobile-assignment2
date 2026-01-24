@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Student Details" />
+            app:title="@string/student_details_title" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textSize="22sp"
-            tools:text="name: Kuku" />
+            tools:text="@string/name_format" />
 
         <TextView
             android:id="@+id/student_detail_id"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="18sp"
-            tools:text="id: 2992929292992" />
+            tools:text="@string/id_format" />
 
         <TextView
             android:id="@+id/student_detail_phone"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="18sp"
-            tools:text="phone: 05434534534" />
+            tools:text="@string/phone_format" />
 
         <TextView
             android:id="@+id/student_detail_address"
@@ -62,14 +62,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="18sp"
-            tools:text="address: Rishon..." />
+            tools:text="@string/address_format" />
 
         <CheckBox
             android:id="@+id/student_detail_checked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="checked"
+            android:text="@string/checked"
             android:textSize="18sp" />
 
         <Space
@@ -86,7 +86,7 @@
             android:paddingTop="16dp"
             android:paddingEnd="32dp"
             android:paddingBottom="16dp"
-            android:text="EDIT"
+            android:text="@string/edit"
             android:textSize="18sp" />
     </LinearLayout>
 

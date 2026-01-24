@@ -5,28 +5,25 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.example.myapplication.databinding.ActivityStudentDetailsBinding
 
 class StudentDetailsActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityStudentDetailsBinding
     private lateinit var student: Student
     private var studentPosition: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_student_details)
+        binding = ActivityStudentDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.student_details_title)
 
         val receivedStudent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra("student", Student::class.java)
@@ -38,21 +35,19 @@ class StudentDetailsActivity : AppCompatActivity() {
 
         if (receivedStudent != null) {
             student = receivedStudent
-            supportActionBar?.title = "Student Details"
-            findViewById<ImageView>(R.id.student_detail_image).setImageResource(student.image)
-            findViewById<TextView>(R.id.student_detail_name).text = "name: ${student.name}"
-            findViewById<TextView>(R.id.student_detail_id).text = "id: ${student.id}"
-            findViewById<TextView>(R.id.student_detail_phone).text = "phone: ${student.phone}"
-            findViewById<TextView>(R.id.student_detail_address).text = "address: ${student.address}"
-            val checkbox = findViewById<CheckBox>(R.id.student_detail_checked)
-            checkbox.isChecked = student.isChecked
-            checkbox.setOnCheckedChangeListener { _, isChecked ->
+            binding.studentDetailImage.setImageResource(student.image)
+            binding.studentDetailName.text = getString(R.string.name_format, student.name)
+            binding.studentDetailId.text = getString(R.string.id_format, student.id)
+            binding.studentDetailPhone.text = getString(R.string.phone_format, student.phone)
+            binding.studentDetailAddress.text = getString(R.string.address_format, student.address)
+            binding.studentDetailChecked.isChecked = student.isChecked
+            binding.studentDetailChecked.setOnCheckedChangeListener { _, isChecked ->
                 student.isChecked = isChecked
             }
         }
 
-        findViewById<Button>(R.id.edit_button).setOnClickListener {
-            Toast.makeText(this, "Edit button clicked", Toast.LENGTH_SHORT).show()
+        binding.editButton.setOnClickListener {
+            Toast.makeText(this, getString(R.string.edit_button_clicked), Toast.LENGTH_SHORT).show()
         }
 
         onBackPressedDispatcher.addCallback(this) {
