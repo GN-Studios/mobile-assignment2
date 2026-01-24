@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -51,7 +52,7 @@ class StudentDetailsActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.edit_button).setOnClickListener {
-            // Handle edit button click
+            Toast.makeText(this, "Edit button clicked", Toast.LENGTH_SHORT).show()
         }
 
         onBackPressedDispatcher.addCallback(this) {

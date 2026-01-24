@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
@@ -86,5 +88,10 @@ class MainActivity : AppCompatActivity() {
             }
         )
         studentList.adapter = adapter
+
+        val fab = findViewById<FloatingActionButton>(R.id.add_student_fab)
+        fab.setOnClickListener {
+            Toast.makeText(this, "Add student clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 }
