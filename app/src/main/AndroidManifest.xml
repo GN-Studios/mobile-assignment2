@@ -23,6 +23,12 @@
         <activity
             android:name=".StudentDetailsActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddStudentActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".EditStudentActivity"
+            android:parentActivityName=".StudentDetailsActivity" />
     </application>
 
 </manifest>

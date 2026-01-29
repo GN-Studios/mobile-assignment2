@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +31,23 @@ class MainActivity : AppCompatActivity() {
                 if (position != null && position != -1 && updatedStudent != null) {
                     students[position] = updatedStudent
                     adapter.notifyItemChanged(position)
+                }
+            }
+        }
+
+    private val addStudentLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val newStudent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    result.data?.getParcelableExtra("new_student", Student::class.java)
+                } else {
+                    @Suppress("DEPRECATION")
+                    result.data?.getParcelableExtra("new_student")
+                }
+
+                if (newStudent != null) {
+                    students.add(newStudent)
+                    adapter.notifyItemInserted(students.size - 1)
                 }
             }
         }
@@ -81,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         binding.studentList.adapter = adapter
 
         binding.addStudentFab.setOnClickListener {
-            Toast.makeText(this, getString(R.string.add_student_clicked), Toast.LENGTH_SHORT).show()
+            addStudentLauncher.launch(Intent(this, AddStudentActivity::class.java))
         }
     }
 }
