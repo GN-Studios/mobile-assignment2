@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <!-- MainActivity -->
+    <string name="students_list_title">Students List</string>
+    <string name="add_student_clicked">Add student clicked</string>
+
+    <!-- StudentDetailsActivity -->
+    <string name="student_details_title">Student Details</string>
+    <string name="edit_button_clicked">Edit button clicked</string>
+    <string name="name_format">name: %s</string>
+    <string name="id_format">id: %s</string>
+    <string name="phone_format">phone: %s</string>
+    <string name="address_format">address: %s</string>
+    <string name="checked">checked</string>
+    <string name="edit">EDIT</string>
+
+</resources>
